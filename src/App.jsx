@@ -293,12 +293,13 @@ const HeaderSection = () => {
 
   return (
     <header
-      className={`relative z-20 w-full transform transition-all duration-1000 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full transform transition-all duration-1000 ease-out ${
         isLoaded ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
       }`}
+      style={{ backgroundColor: 'rgba(17, 24, 39, 0.95)' }}
     >
       {/* Header Background with dark gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-lg border-b border-gray-700/50"></div>
+      <div className="absolute inset-0 bg-gray-900/95 backdrop-blur-lg border-b border-gray-700/50"></div>
       
       <div className="relative w-full px-2 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
@@ -310,7 +311,7 @@ const HeaderSection = () => {
             }`}
           >
             <LogoIcon />
-            <span className="text-xl font-bold text-white">
+            <span className="text-lg sm:text-xl font-bold text-white">
               Portfolio
             </span>
           </div>
@@ -377,7 +378,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-2 sm:p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-2 sm:p-4 md:p-6 lg:p-8 bg-black pt-20">
       {/* Dark background for all modes */}
       <div
         className="absolute inset-0 z-0"
@@ -389,7 +390,7 @@ const Portfolio = () => {
 
       {/* Main Content Container */}
       <div className="container mx-auto max-w-7xl relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 md:gap-12 xl:gap-16 items-center min-h-[calc(100vh-5rem)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 xl:gap-16 items-center min-h-[calc(100vh-8rem)]">
           {/* Left Column: Text Content */}
           <div
             className={`flex flex-col gap-3 sm:gap-4 md:gap-6 items-start text-left order-2 lg:order-1 transform transition-all duration-1000 delay-800 ease-out ${
@@ -411,7 +412,7 @@ const Portfolio = () => {
 
             <div className="relative w-full">
               <h1
-                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white transform transition-all duration-1000 delay-1000 ease-out ${
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white transform transition-all duration-1000 delay-1000 ease-out ${
                   isLoaded
                     ? "translate-y-0 opacity-100"
                     : "translate-y-20 opacity-0"
@@ -503,11 +504,20 @@ export default function App() {
         viewportMeta.name = 'viewport';
         document.head.appendChild(viewportMeta);
       }
-      viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+      viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+      
+      // Force dark background on body
+      document.body.style.backgroundColor = '#000000';
+      document.documentElement.style.backgroundColor = '#000000';
     }
 
     // Add custom CSS for animations and mobile fixes
     const styles = `
+      html, body {
+        background-color: #000000 !important;
+        color: white;
+      }
+      
       @keyframes fade-in-up {
         from {
           opacity: 0;
@@ -532,10 +542,16 @@ export default function App() {
         html, body {
           overflow-x: hidden;
           -webkit-text-size-adjust: 100%;
+          background-color: #000000 !important;
         }
         
         * {
           -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Force header to be dark on mobile */
+        header {
+          background-color: rgba(17, 24, 39, 0.95) !important;
         }
       }
 
@@ -543,6 +559,17 @@ export default function App() {
       @supports (-webkit-touch-callout: none) {
         .min-h-screen {
           min-height: -webkit-fill-available;
+        }
+        
+        html, body {
+          background-color: #000000 !important;
+        }
+      }
+      
+      /* Additional mobile Safari fixes */
+      @media screen and (max-device-width: 480px) {
+        html, body {
+          background-color: #000000 !important;
         }
       }
     `;
@@ -557,9 +584,10 @@ export default function App() {
 
   return (
     <div
-      className={`relative w-full min-h-screen overflow-hidden transform transition-all duration-1000 ease-out ${
+      className={`relative w-full min-h-screen overflow-hidden bg-black transform transition-all duration-1000 ease-out ${
         isPageLoaded ? "opacity-100" : "opacity-0"
       }`}
+      style={{ backgroundColor: '#000000' }}
     >
       {/* The Header and Hero components have their own z-index which places them above the gradients. */}
       <HeaderSection />
