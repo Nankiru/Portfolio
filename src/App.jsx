@@ -67,7 +67,7 @@ const coderData = {
   name: "Khem Sopheanan",
   role: "Frontend Developer",
   seniority: "3+ Years",
-  location: "Cambodia",
+  location: "Phnom Penh, Cambodia ",
   skills: [
     "React",
     "JavaScript",
@@ -90,8 +90,8 @@ const coderData = {
 // The styled code window component
 const CoderProfileCard = () => {
   return (
-    // Main container with gradient, border, and shadow - theme-aware
-    <div className="w-full mx-auto bg-gradient-to-r from-zinc-100 to-zinc-200 border-zinc-300 relative rounded-lg border shadow-lg">
+    // Main container with gradient, border, and shadow - dark theme
+    <div className="w-full mx-auto bg-gradient-to-r from-gray-800 to-gray-900 border-gray-600 relative rounded-lg border shadow-lg">
       {/* Top gradient border element */}
       <div className="flex flex-row">
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
@@ -99,26 +99,26 @@ const CoderProfileCard = () => {
       </div>
 
       {/* Window Header */}
-      <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-zinc-200">
+      <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-gray-900">
         <div className="flex flex-row space-x-2">
           <div className="h-3 w-3 rounded-full bg-red-500 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-red-400 animate-pulse"></div>
           <div className="h-3 w-3 rounded-full bg-orange-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-orange-300 animate-pulse" style={{animationDelay: '0.5s'}}></div>
           <div className="h-3 w-3 rounded-full bg-green-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-green-300 animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
-        <div className="text-xs text-zinc-600 font-mono">
+        <div className="text-xs text-gray-400 font-mono">
           nanui.js
         </div>
       </div>
 
       {/* Code Content Area */}
-      <div className="overflow-hidden border-t-[2px] border-zinc-300 px-4 lg:px-8 py-4 lg:py-8 relative">
+      <div className="overflow-hidden border-t-[2px] border-gray-600 px-4 lg:px-8 py-4 lg:py-8 relative">
         {/* Background blur effects */}
         <div className="absolute -top-24 -left-24 w-56 h-56 bg-blue-600 rounded-full opacity-10 filter blur-3xl"></div>
         <div className="absolute -bottom-24 -right-24 w-56 h-56 bg-pink-600 rounded-full opacity-10 filter blur-3xl"></div>
 
         <div className="relative flex">
           {/* Line Numbers */}
-          <div className="hidden md:flex flex-col items-end pr-4 text-zinc-600 font-mono text-xs">
+          <div className="hidden md:flex flex-col items-end pr-4 text-gray-500 font-mono text-xs">
             {Array.from({ length: 12 }, (_, i) => (
               <div key={i} className="leading-relaxed select-none opacity-70">
                 {i + 1}
@@ -126,84 +126,84 @@ const CoderProfileCard = () => {
             ))}
           </div>
 
-          {/* Code Snippet with theme-aware colors */}
+          {/* Code Snippet with dark theme colors */}
           <code className="font-mono text-xs md:text-sm lg:text-base w-full">
             <div>
-              <span className="mr-2 text-pink-500">
+              <span className="mr-2 text-pink-400">
                 const
               </span>
-              <span className="mr-2 text-violet-500">
+              <span className="mr-2 text-violet-400">
                 coder
               </span>
-              <span className="mr-2 text-pink-500">=</span>
-              <span className="text-zinc-600">{"{"}</span>
+              <span className="mr-2 text-pink-400">=</span>
+              <span className="text-gray-400">{"{"}</span>
             </div>
             <div className="pl-6">
-              <span className="text-zinc-800">name:</span>
-              <span className="text-zinc-600">&#39;</span>
-              <span className="text-green-600">
+              <span className="text-white">name:</span>
+              <span className="text-gray-400">&#39;</span>
+              <span className="text-green-400">
                 {coderData.name}
               </span>
-              <span className="text-zinc-600">&#39;,</span>
+              <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-6">
-              <span className="text-zinc-800">role:</span>
-              <span className="text-zinc-600">&#39;</span>
-              <span className="text-green-600">
+              <span className="text-white">role:</span>
+              <span className="text-gray-400">&#39;</span>
+              <span className="text-green-400">
                 {coderData.role}
               </span>
-              <span className="text-zinc-600">&#39;,</span>
+              <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-6">
-              <span className="text-zinc-800">year:</span>
-              <span className="text-zinc-600">&#39;</span>
-              <span className="text-green-600">
+              <span className="text-white">year:</span>
+              <span className="text-gray-400">&#39;</span>
+              <span className="text-green-400">
                 {coderData.seniority}
               </span>
-              <span className="text-zinc-600">&#39;,</span>
+              <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-6">
-              <span className="text-zinc-800">location:</span>
-              <span className="text-zinc-600">&#39;</span>
-              <span className="text-green-600">
+              <span className="text-white">location:</span>
+              <span className="text-gray-400">&#39;</span>
+              <span className="text-green-400">
                 {coderData.location}
               </span>
-              <span className="text-zinc-600">&#39;,</span>
+              <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-6">
-              <span className="text-zinc-800">skills:</span>
-              <span className="text-zinc-600">{"["}</span>
+              <span className="text-white">skills:</span>
+              <span className="text-gray-400">{"["}</span>
               <div className="pl-6 flex flex-wrap">
                 {coderData.skills.map((skill, index) => (
                   <span key={skill} className="mr-1">
-                    <span className="text-zinc-600">
+                    <span className="text-gray-400">
                       &#39;
                     </span>
-                    <span className="text-cyan-600">
+                    <span className="text-cyan-400">
                       {skill}
                     </span>
-                    <span className="text-zinc-600">
+                    <span className="text-gray-400">
                       &#39;
                     </span>
                     {index < coderData.skills.length - 1 && (
-                      <span className="text-zinc-600">
+                      <span className="text-gray-400">
                         ,{" "}
                       </span>
                     )}
                   </span>
                 ))}
               </div>
-              <span className="text-zinc-600">{"],"}</span>
+              <span className="text-gray-400">{"],"}</span>
             </div>
             <div>
-              <span className="text-zinc-600">{"};"}</span>
+              <span className="text-gray-400">{"};"}</span>
             </div>
           </code>
         </div>
       </div>
 
       {/* Window Footer */}
-      <div className="px-4 lg:px-8 pb-4 mt-4 border-t border-zinc-300 pt-3 text-xs text-zinc-600 flex justify-between items-center">
+      <div className="px-4 lg:px-8 pb-4 mt-4 border-t border-gray-600 pt-3 text-xs text-gray-400 flex justify-between items-center">
         <span>UTF-8</span>
         <span>JavaScript</span>
         <span>Ln 12, Col 2</span>
@@ -218,8 +218,8 @@ const NavLink = ({ href, children, isActive = false }) => (
     href={href}
     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
       isActive
-        ? "text-orange-500"
-        : "text-gray-600 hover:text-orange-500"
+        ? "text-orange-400"
+        : "text-gray-300 hover:text-orange-400"
     }`}
   >
     {children}
@@ -232,11 +232,11 @@ const Button = ({ children, variant = "primary", className = "" }) => {
 
   const variants = {
     primary:
-      "bg-gray-900 text-white hover:bg-gray-800 focus:ring-gray-900",
+      "bg-white text-black hover:bg-gray-200 focus:ring-gray-300",
     secondary:
-      "bg-white text-gray-900 hover:bg-gray-200 focus:ring-gray-300 shadow-sm border border-gray-200",
+      "bg-gray-800 text-white hover:bg-gray-700 focus:ring-gray-600 shadow-sm border border-gray-600",
     outline:
-      "bg-white text-gray-900 border border-gray-300 hover:bg-gray-100 focus:ring-gray-300",
+      "bg-transparent text-white border border-gray-600 hover:bg-gray-800 focus:ring-gray-600",
   };
 
   return (
@@ -250,7 +250,7 @@ const Button = ({ children, variant = "primary", className = "" }) => {
 const MobileMenu = ({ isOpen, navItems }) => (
   <div
     className={`
-        md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg
+        md:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 shadow-lg
         transition-all duration-300 ease-in-out
         ${
           isOpen
@@ -264,13 +264,13 @@ const MobileMenu = ({ isOpen, navItems }) => (
         <a
           key={item}
           href={`#${item.toLowerCase()}`}
-          className="text-gray-700 hover:text-orange-500 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium"
+          className="text-gray-300 hover:text-orange-400 hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium"
         >
           {item}
         </a>
       ))}
     </div>
-    <div className="pt-4 pb-4 border-t border-gray-200">
+    <div className="pt-4 pb-4 border-t border-gray-700">
       <div className="px-5">
         <Button variant="outline" className="w-full">
           Buy Template
@@ -297,8 +297,8 @@ const HeaderSection = () => {
         isLoaded ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
       }`}
     >
-      {/* Header Background with Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-blue-50/80 to-white/80 backdrop-blur-lg border-b border-gray-200/50"></div>
+      {/* Header Background with dark gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-lg border-b border-gray-700/50"></div>
       
       <div className="relative w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -310,12 +310,12 @@ const HeaderSection = () => {
             }`}
           >
             <LogoIcon />
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-xl font-bold text-white">
               Portfolio
             </span>
           </div>
           <nav
-            className={`hidden md:flex items-center space-x-1 bg-white/60 p-1 rounded-full backdrop-blur-sm border border-gray-200/80 shadow-lg transform transition-all duration-700 delay-300 ease-out ${
+            className={`hidden md:flex items-center space-x-1 bg-gray-800/60 p-1 rounded-full backdrop-blur-sm border border-gray-600/80 shadow-lg transform transition-all duration-700 delay-300 ease-out ${
               isLoaded ? "scale-100 opacity-100" : "scale-95 opacity-0"
             }`}
           >
@@ -350,7 +350,7 @@ const HeaderSection = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -378,12 +378,12 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-4 sm:p-6 lg:p-8">
-      {/* Single background for both light and dark modes */}
+      {/* Dark background for all modes */}
       <div
         className="absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(125% 125% at 50% 100%, #ffffff 40%, #3b82f6 100%)",
+            "radial-gradient(125% 125% at 50% 100%, #000000 40%, #0a0a23 100%)",
         }}
       />
 
@@ -399,7 +399,7 @@ const Portfolio = () => {
             }`}
           >
             <div
-              className={`inline-flex items-center gap-2 px-3 py-1 bg-gray-900/80 border border-gray-700 rounded-full text-xs sm:text-sm text-gray-200 backdrop-blur-sm hover:bg-gray-800 transition-all duration-300 transform ${
+              className={`inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-gray-600 rounded-full text-xs sm:text-sm text-gray-300 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform ${
                 isLoaded
                   ? "translate-y-0 opacity-100 scale-100"
                   : "translate-y-10 opacity-0 scale-95"
@@ -411,7 +411,7 @@ const Portfolio = () => {
 
             <div className="relative">
               <h1
-                className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-900 transform transition-all duration-1000 delay-1000 ease-out ${
+                className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white transform transition-all duration-1000 delay-1000 ease-out ${
                   isLoaded
                     ? "translate-y-0 opacity-100"
                     : "translate-y-20 opacity-0"
@@ -419,7 +419,7 @@ const Portfolio = () => {
               >
                 Hello <br />
                 I&apos;m{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   Khem Sopheanan
                 </span>
               </h1>
@@ -432,19 +432,19 @@ const Portfolio = () => {
                   : "translate-y-10 opacity-0"
               }`}
             >
-              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-gray-900/80 border border-gray-700 rounded-full text-gray-200 text-sm sm:text-base backdrop-blur-sm hover:bg-gray-800 transition-all duration-300 cursor-default">
+              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-sm sm:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
                 Learning MARN Stack
               </span>
-              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-gray-900/80 border border-gray-700 rounded-full text-gray-200 text-sm sm:text-base backdrop-blur-sm hover:bg-gray-800 transition-all duration-300 cursor-default">
+              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-sm sm:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
                 Clean Code
               </span>
-              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-gray-900/80 border border-gray-700 rounded-full text-gray-200 text-sm sm:text-base backdrop-blur-sm hover:bg-gray-800 transition-all duration-300 cursor-default">
+              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-sm sm:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
                 Innovation
               </span>
             </div>
 
             <p
-              className={`text-gray-600 text-base sm:text-lg lg:text-xl max-w-lg leading-relaxed transform transition-all duration-800 delay-1400 ease-out ${
+              className={`text-gray-300 text-base sm:text-lg lg:text-xl max-w-lg leading-relaxed transform transition-all duration-800 delay-1400 ease-out ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
@@ -461,10 +461,10 @@ const Portfolio = () => {
                   : "translate-y-10 opacity-0"
               }`}
             >
-              <button className="px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+              <button className="px-6 py-3 bg-blue-500 text-white hover:bg-blue-600 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                 Learn More
               </button>
-              <button className="px-6 py-3 bg-transparent hover:bg-gray-100 border border-gray-300 text-gray-900 rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
+              <button className="px-6 py-3 bg-transparent hover:bg-gray-800 border border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
                 <a href="https://t.me/nan_fullstack" target="_blank">
                   Contact Me
                 </a>
