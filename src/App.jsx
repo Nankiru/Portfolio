@@ -91,7 +91,7 @@ const coderData = {
 const CoderProfileCard = () => {
   return (
     // Main container with gradient, border, and shadow - dark theme
-    <div className="w-full mx-auto bg-gradient-to-r from-gray-800 to-gray-900 border-gray-600 relative rounded-lg border shadow-lg">
+    <div className="w-full mx-auto bg-gradient-to-r from-gray-800 to-gray-900 border-gray-600 relative rounded-lg border shadow-lg overflow-hidden">
       {/* Top gradient border element */}
       <div className="flex flex-row">
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
@@ -99,26 +99,26 @@ const CoderProfileCard = () => {
       </div>
 
       {/* Window Header */}
-      <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-gray-900">
-        <div className="flex flex-row space-x-2">
-          <div className="h-3 w-3 rounded-full bg-red-500 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-red-400 animate-pulse"></div>
-          <div className="h-3 w-3 rounded-full bg-orange-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-orange-300 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-          <div className="h-3 w-3 rounded-full bg-green-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-green-300 animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="px-2 sm:px-4 lg:px-8 py-3 sm:py-5 flex justify-between items-center bg-gray-900">
+        <div className="flex flex-row space-x-1 sm:space-x-2">
+          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-red-500 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-red-400 animate-pulse"></div>
+          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-orange-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-orange-300 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-green-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-green-300 animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
         <div className="text-xs text-gray-400 font-mono">
-          nanui.js
+          Portfolio.js
         </div>
       </div>
 
       {/* Code Content Area */}
-      <div className="overflow-hidden border-t-[2px] border-gray-600 px-4 lg:px-8 py-4 lg:py-8 relative">
+      <div className="overflow-hidden border-t-[2px] border-gray-600 px-2 sm:px-4 lg:px-8 py-3 sm:py-4 lg:py-8 relative">
         {/* Background blur effects */}
         <div className="absolute -top-24 -left-24 w-56 h-56 bg-blue-600 rounded-full opacity-10 filter blur-3xl"></div>
         <div className="absolute -bottom-24 -right-24 w-56 h-56 bg-pink-600 rounded-full opacity-10 filter blur-3xl"></div>
 
         <div className="relative flex">
           {/* Line Numbers */}
-          <div className="hidden md:flex flex-col items-end pr-4 text-gray-500 font-mono text-xs">
+          <div className="hidden sm:flex flex-col items-end pr-2 sm:pr-4 text-gray-500 font-mono text-xs">
             {Array.from({ length: 12 }, (_, i) => (
               <div key={i} className="leading-relaxed select-none opacity-70">
                 {i + 1}
@@ -127,18 +127,18 @@ const CoderProfileCard = () => {
           </div>
 
           {/* Code Snippet with dark theme colors */}
-          <code className="font-mono text-xs md:text-sm lg:text-base w-full">
+          <code className="font-mono text-xs sm:text-sm lg:text-base w-full overflow-x-auto">
             <div>
-              <span className="mr-2 text-pink-400">
+              <span className="mr-1 sm:mr-2 text-pink-400">
                 const
               </span>
-              <span className="mr-2 text-violet-400">
+              <span className="mr-1 sm:mr-2 text-violet-400">
                 coder
               </span>
-              <span className="mr-2 text-pink-400">=</span>
+              <span className="mr-1 sm:mr-2 text-pink-400">=</span>
               <span className="text-gray-400">{"{"}</span>
             </div>
-            <div className="pl-6">
+            <div className="pl-3 sm:pl-6">
               <span className="text-white">name:</span>
               <span className="text-gray-400">&#39;</span>
               <span className="text-green-400">
@@ -146,7 +146,7 @@ const CoderProfileCard = () => {
               </span>
               <span className="text-gray-400">&#39;,</span>
             </div>
-            <div className="pl-6">
+            <div className="pl-3 sm:pl-6">
               <span className="text-white">role:</span>
               <span className="text-gray-400">&#39;</span>
               <span className="text-green-400">
@@ -154,7 +154,7 @@ const CoderProfileCard = () => {
               </span>
               <span className="text-gray-400">&#39;,</span>
             </div>
-            <div className="pl-6">
+            <div className="pl-3 sm:pl-6">
               <span className="text-white">year:</span>
               <span className="text-gray-400">&#39;</span>
               <span className="text-green-400">
@@ -162,7 +162,7 @@ const CoderProfileCard = () => {
               </span>
               <span className="text-gray-400">&#39;,</span>
             </div>
-            <div className="pl-6">
+            <div className="pl-3 sm:pl-6">
               <span className="text-white">location:</span>
               <span className="text-gray-400">&#39;</span>
               <span className="text-green-400">
@@ -170,10 +170,10 @@ const CoderProfileCard = () => {
               </span>
               <span className="text-gray-400">&#39;,</span>
             </div>
-            <div className="pl-6">
+            <div className="pl-3 sm:pl-6">
               <span className="text-white">skills:</span>
               <span className="text-gray-400">{"["}</span>
-              <div className="pl-6 flex flex-wrap">
+              <div className="pl-3 sm:pl-6 flex flex-wrap">
                 {coderData.skills.map((skill, index) => (
                   <span key={skill} className="mr-1">
                     <span className="text-gray-400">
@@ -203,7 +203,7 @@ const CoderProfileCard = () => {
       </div>
 
       {/* Window Footer */}
-      <div className="px-4 lg:px-8 pb-4 mt-4 border-t border-gray-600 pt-3 text-xs text-gray-400 flex justify-between items-center">
+      <div className="px-2 sm:px-4 lg:px-8 pb-2 sm:pb-4 mt-2 sm:mt-4 border-t border-gray-600 pt-2 sm:pt-3 text-xs text-gray-400 flex justify-between items-center">
         <span>UTF-8</span>
         <span>JavaScript</span>
         <span>Ln 12, Col 2</span>
@@ -300,8 +300,8 @@ const HeaderSection = () => {
       {/* Header Background with dark gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-800/80 to-gray-900/80 backdrop-blur-lg border-b border-gray-700/50"></div>
       
-      <div className="relative w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="relative w-full px-2 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           <div
             className={`flex-shrink-0 flex items-center gap-2 transform transition-all duration-700 delay-200 ease-out ${
               isLoaded
@@ -377,7 +377,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen w-full relative flex items-center justify-center font-sans p-2 sm:p-4 md:p-6 lg:p-8">
       {/* Dark background for all modes */}
       <div
         className="absolute inset-0 z-0"
@@ -388,18 +388,18 @@ const Portfolio = () => {
       />
 
       {/* Main Content Container */}
-      <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 xl:gap-16 items-center">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 md:gap-12 xl:gap-16 items-center min-h-[calc(100vh-5rem)]">
           {/* Left Column: Text Content */}
           <div
-            className={`flex flex-col gap-4 sm:gap-6 items-start text-left order-2 lg:order-1 transform transition-all duration-1000 delay-800 ease-out ${
+            className={`flex flex-col gap-3 sm:gap-4 md:gap-6 items-start text-left order-2 lg:order-1 transform transition-all duration-1000 delay-800 ease-out ${
               isLoaded
                 ? "translate-y-0 opacity-100"
                 : "translate-y-20 opacity-0"
             }`}
           >
             <div
-              className={`inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-gray-600 rounded-full text-xs sm:text-sm text-gray-300 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform ${
+              className={`inline-flex items-center gap-2 px-2 sm:px-3 py-1 bg-white/10 border border-gray-600 rounded-full text-xs sm:text-sm text-gray-300 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform ${
                 isLoaded
                   ? "translate-y-0 opacity-100 scale-100"
                   : "translate-y-10 opacity-0 scale-95"
@@ -409,9 +409,9 @@ const Portfolio = () => {
               Welcome to my universe
             </div>
 
-            <div className="relative">
+            <div className="relative w-full">
               <h1
-                className={`text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white transform transition-all duration-1000 delay-1000 ease-out ${
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white transform transition-all duration-1000 delay-1000 ease-out ${
                   isLoaded
                     ? "translate-y-0 opacity-100"
                     : "translate-y-20 opacity-0"
@@ -426,25 +426,25 @@ const Portfolio = () => {
             </div>
 
             <div
-              className={`flex flex-wrap gap-2 sm:gap-3 my-2 sm:my-4 transform transition-all duration-800 delay-1200 ease-out ${
+              className={`flex flex-wrap gap-1 sm:gap-2 md:gap-3 my-2 sm:my-4 transform transition-all duration-800 delay-1200 ease-out ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
               }`}
             >
-              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-sm sm:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
+              <span className="px-2 sm:px-3 md:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-xs sm:text-sm md:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
                 Learning MARN Stack
               </span>
-              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-sm sm:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
+              <span className="px-2 sm:px-3 md:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-xs sm:text-sm md:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
                 Clean Code
               </span>
-              <span className="px-3 sm:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-sm sm:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
+              <span className="px-2 sm:px-3 md:px-4 py-1 sm:py-2 bg-white/10 border border-gray-600 rounded-full text-gray-300 text-xs sm:text-sm md:text-base backdrop-blur-sm hover:bg-white/20 transition-all duration-300 cursor-default">
                 Innovation
               </span>
             </div>
 
             <p
-              className={`text-gray-300 text-base sm:text-lg lg:text-xl max-w-lg leading-relaxed transform transition-all duration-800 delay-1400 ease-out ${
+              className={`text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-lg leading-relaxed transform transition-all duration-800 delay-1400 ease-out ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
@@ -455,16 +455,16 @@ const Portfolio = () => {
             </p>
 
             <div
-              className={`flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6 w-full sm:w-auto transform transition-all duration-800 delay-1600 ease-out ${
+              className={`flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mt-3 sm:mt-4 md:mt-6 w-full sm:w-auto transform transition-all duration-800 delay-1600 ease-out ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
               }`}
             >
-              <button className="px-6 py-3 bg-blue-500 text-white hover:bg-blue-600 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+              <button className="px-4 sm:px-6 py-2 sm:py-3 bg-blue-500 text-white hover:bg-blue-600 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                 Learn More
               </button>
-              <button className="px-6 py-3 bg-transparent hover:bg-gray-800 border border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
+              <button className="px-4 sm:px-6 py-2 sm:py-3 bg-transparent hover:bg-gray-800 border border-gray-600 text-white rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95">
                 <a href="https://t.me/nan_fullstack" target="_blank">
                   Contact Me
                 </a>
@@ -474,7 +474,7 @@ const Portfolio = () => {
 
           {/* Right Column: Code Editor */}
           <div
-            className={`order-1 lg:order-2 transform transition-all duration-1000 delay-600 ease-out ${
+            className={`order-1 lg:order-2 w-full max-w-full transform transition-all duration-1000 delay-600 ease-out ${
               isLoaded
                 ? "translate-y-0 opacity-100"
                 : "translate-y-20 opacity-0"
@@ -495,7 +495,18 @@ export default function App() {
   useEffect(() => {
     setIsPageLoaded(true);
 
-    // Add custom CSS for animations
+    // Add viewport meta tag for proper mobile rendering
+    if (typeof document !== "undefined") {
+      let viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (!viewportMeta) {
+        viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        document.head.appendChild(viewportMeta);
+      }
+      viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    }
+
+    // Add custom CSS for animations and mobile fixes
     const styles = `
       @keyframes fade-in-up {
         from {
@@ -514,6 +525,25 @@ export default function App() {
 
       .hover\\:shadow-3xl:hover {
         box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Mobile specific fixes */
+      @media (max-width: 640px) {
+        html, body {
+          overflow-x: hidden;
+          -webkit-text-size-adjust: 100%;
+        }
+        
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+      }
+
+      /* Fix for iOS Safari */
+      @supports (-webkit-touch-callout: none) {
+        .min-h-screen {
+          min-height: -webkit-fill-available;
+        }
       }
     `;
 
