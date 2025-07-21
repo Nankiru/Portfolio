@@ -101,9 +101,9 @@ const CoderProfileCard = () => {
       {/* Window Header */}
       <div className="px-4 lg:px-8 py-5 flex justify-between items-center bg-zinc-200 dark:bg-[#000000]">
         <div className="flex flex-row space-x-2">
-          <div className="h-3 w-3 rounded-full bg-red-500"></div>
-          <div className="h-3 w-3 rounded-full bg-orange-400"></div>
-          <div className="h-3 w-3 rounded-full bg-green-400"></div>
+          <div className="h-3 w-3 rounded-full bg-red-500 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-red-400 animate-pulse"></div>
+          <div className="h-3 w-3 rounded-full bg-orange-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-orange-300 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="h-3 w-3 rounded-full bg-green-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-green-300 animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
         <div className="text-xs text-zinc-600 dark:text-gray-400 font-mono">
           nanui.js
