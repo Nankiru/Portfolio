@@ -387,13 +387,9 @@ const Portfolio = () => {
         }}
       />
 
-      {/* Dark mode Azure Depths */}
+      {/* Dark mode solid background */}
       <div
-        className="absolute inset-0 z-0 hidden dark:block"
-        style={{
-          background:
-            "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
-        }}
+        className="absolute inset-0 z-0 hidden dark:block bg-gray-900"
       />
 
       {/* Main Content Container */}
