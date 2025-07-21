@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Marquee from "./pages/Skill.jsx";
 import Footer from "./pages/Footer.jsx";
+import About from "./pages/About.jsx";
 
 // Self-contained SVG icon for the "Welcome" badge
 const DotIcon = () => (
@@ -249,7 +250,7 @@ const Button = ({ children, variant = "primary", className = "" }) => {
 };
 
 // --- MOBILE NAVIGATION --- //
-const MobileMenu = ({ isOpen, navItems }) => (
+const MobileMenu = ({ isOpen, navItems, handleNavClick, activeLink }) => (
   <div
     className={`
         md:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 shadow-lg
@@ -263,19 +264,23 @@ const MobileMenu = ({ isOpen, navItems }) => (
   >
     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
       {navItems.map((item) => (
-        <a
+        <button
           key={item}
-          href={`#${item.toLowerCase()}`}
-          className="text-gray-300 hover:text-orange-400 hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium"
+          onClick={() => handleNavClick(item)}
+          className={`w-full text-left block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${
+            activeLink === item
+              ? "text-orange-400 bg-gray-800"
+              : "text-gray-300 hover:text-orange-400 hover:bg-gray-800"
+          }`}
         >
           {item}
-        </a>
+        </button>
       ))}
     </div>
     <div className="pt-4 pb-4 border-t border-gray-700">
       <div className="px-5">
         <Button variant="outline" className="w-full">
-          Buy Template
+          <a href="https://t.me/nan_fullstack">Contact Me</a>
         </Button>
       </div>
     </div>
@@ -285,23 +290,86 @@ const MobileMenu = ({ isOpen, navItems }) => (
 // --- HEADER SECTION (IMPROVED) --- //
 const HeaderSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeLink] = useState("About");
+  const [activeLink, setActiveLink] = useState("Home");
   const [isLoaded, setIsLoaded] = useState(false);
-  const navItems = ["About", "Features", "Blog", "Pricing", "Contact"];
+  const [isScrolled, setIsScrolled] = useState(false);
+  const navItems = ["Home", "Features", "About Me", "Contact"];
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Add smooth scrolling CSS
+    const styles = `
+      html {
+        scroll-behavior: smooth;
+      }
+    `;
+    
+    if (typeof document !== "undefined") {
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = styles;
+      document.head.appendChild(styleSheet);
+    }
+
+    // Handle scroll to update active navigation and scroll state
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      
+      // Update scroll state for enhanced navbar visibility
+      setIsScrolled(scrollY > 50);
+      
+      // Active navigation tracking
+      const sections = navItems.map(item => {
+        const sectionId = item.toLowerCase().replace(/\s+/g, '');
+        return document.getElementById(sectionId);
+      });
+      const scrollPosition = window.scrollY + 100; // Offset for sticky header
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveLink(navItems[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (item) => {
+    // Convert navigation item to section ID format
+    const sectionId = item.toLowerCase().replace(/\s+/g, '');
+    const section = document.getElementById(sectionId);
+    
+    if (section) {
+      section.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      setActiveLink(item);
+      setIsMenuOpen(false); // Close mobile menu
+    }
+  };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full transform transition-all duration-1000 ease-out ${
+      className={`sticky top-0 left-0 right-0 z-50 w-full transform transition-all duration-500 ease-out ${
         isLoaded ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
-      }`}
-      style={{ backgroundColor: 'rgba(17, 24, 39, 0.95)' }}
+      } ${isScrolled ? "shadow-2xl backdrop-blur-xl" : "shadow-lg backdrop-blur-lg"}`}
+      style={{ 
+        backgroundColor: isScrolled ? 'rgba(17, 24, 39, 0.98)' : 'rgba(17, 24, 39, 0.95)',
+        backdropFilter: isScrolled ? 'blur(20px)' : 'blur(12px)',
+        borderBottom: isScrolled ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(75, 85, 99, 0.5)'
+      }}
     >
-      {/* Header Background with dark gradient */}
-      <div className="absolute inset-0 bg-gray-900/95 backdrop-blur-lg border-b border-gray-700/50"></div>
+      {/* Enhanced Header Background with scroll-responsive styling */}
+      <div className={`absolute inset-0 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-gradient-to-r from-gray-900/98 via-gray-800/98 to-gray-900/98 shadow-2xl shadow-blue-900/20' 
+          : 'bg-gray-900/95 shadow-lg shadow-black/20'
+      } backdrop-blur-lg border-b border-gray-700/50`}></div>
       
       <div className="relative w-full px-2 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
@@ -318,8 +386,12 @@ const HeaderSection = () => {
             </span>
           </div>
           <nav
-            className={`hidden md:flex items-center space-x-1 bg-gray-800/60 p-1 rounded-full backdrop-blur-sm border border-gray-600/80 shadow-lg transform transition-all duration-700 delay-300 ease-out ${
+            className={`hidden md:flex items-center space-x-1 p-1 rounded-full backdrop-blur-sm border shadow-lg transform transition-all duration-700 delay-300 ease-out ${
               isLoaded ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            } ${
+              isScrolled 
+                ? "bg-gray-800/80 border-blue-400/50 shadow-blue-900/30" 
+                : "bg-gray-800/60 border-gray-600/80 shadow-gray-900/50"
             }`}
           >
             {navItems.map((item, index) => (
@@ -332,12 +404,20 @@ const HeaderSection = () => {
                 }`}
                 style={{ transitionDelay: `${400 + index * 100}ms` }}
               >
-                <NavLink
-                  href={`#${item.toLowerCase()}`}
-                  isActive={activeLink === item}
+                <button
+                  onClick={() => handleNavClick(item)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                    activeLink === item
+                      ? isScrolled 
+                        ? "text-blue-400 bg-blue-500/20 shadow-lg" 
+                        : "text-orange-400"
+                      : isScrolled
+                        ? "text-gray-200 hover:text-blue-400 hover:bg-blue-500/10"
+                        : "text-gray-300 hover:text-orange-400"
+                  }`}
                 >
                   {item}
-                </NavLink>
+                </button>
               </div>
             ))}
           </nav>
@@ -363,7 +443,12 @@ const HeaderSection = () => {
           </div>
         </div>
       </div>
-      <MobileMenu isOpen={isMenuOpen} navItems={navItems} />
+      <MobileMenu 
+        isOpen={isMenuOpen} 
+        navItems={navItems} 
+        handleNavClick={handleNavClick}
+        activeLink={activeLink}
+      />
     </header>
   );
 };
@@ -496,9 +581,58 @@ const Portfolio = () => {
 // --- MAIN APP COMPONENT (REFACTORED) --- //
 export default function App() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  const [scrollTriggeredSections, setScrollTriggeredSections] = useState(new Set());
 
   useEffect(() => {
-    setIsPageLoaded(true);
+    // Show loading screen for a bit longer to see animations
+    const loadingTimer = setTimeout(() => {
+      setShowLoadingScreen(false);
+      // Then trigger page animations
+      setTimeout(() => {
+        setIsPageLoaded(true);
+      }, 200);
+    }, 1500); // Show loading for 1.5 seconds
+
+    return () => clearTimeout(loadingTimer);
+  }, []);
+
+  // Separate useEffect for Intersection Observer
+  useEffect(() => {
+    if (!isPageLoaded) return;
+
+    const observerOptions = {
+      threshold: 0.1, // Trigger when 10% of element is visible
+      rootMargin: '-50px 0px -50px 0px' // Trigger slightly before element comes into view
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          console.log('Section visible:', entry.target.id); // Debug log
+          setScrollTriggeredSections(prev => new Set([...prev, entry.target.id]));
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections after a delay to ensure DOM is ready
+    const observeTimer = setTimeout(() => {
+      const sectionsToObserve = ['home', 'features', 'aboutme', 'contact'];
+      sectionsToObserve.forEach(sectionId => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.observe(element);
+        }
+      });
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(observeTimer);
+    };
+  }, [isPageLoaded]);
+
+  useEffect(() => {
 
     // Add viewport meta tag for proper mobile rendering
     if (typeof document !== "undefined") {
@@ -533,8 +667,161 @@ export default function App() {
         }
       }
 
+      @keyframes loading-pulse {
+        0%, 100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes loading-spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes scale-in {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slide-in-left {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slide-in-right {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slide-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slide-in-down {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes zoom-in {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes bounce-in {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        70% {
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes rotate-in {
+        from {
+          opacity: 0;
+          transform: rotate(-180deg) scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: rotate(0deg) scale(1);
+        }
+      }
+
       .animate-fade-in-up {
         animation: fade-in-up 0.6s ease-out forwards;
+      }
+
+      .animate-slide-in-left {
+        animation: slide-in-left 0.8s ease-out forwards;
+      }
+
+      .animate-slide-in-right {
+        animation: slide-in-right 0.8s ease-out forwards;
+      }
+
+      .animate-slide-in-up {
+        animation: slide-in-up 0.8s ease-out forwards;
+      }
+
+      .animate-slide-in-down {
+        animation: slide-in-down 0.8s ease-out forwards;
+      }
+
+      .animate-zoom-in {
+        animation: zoom-in 0.6s ease-out forwards;
+      }
+
+      .animate-bounce-in {
+        animation: bounce-in 0.8s ease-out forwards;
+      }
+
+      .animate-rotate-in {
+        animation: rotate-in 1s ease-out forwards;
+      }
+
+      .animate-loading-pulse {
+        animation: loading-pulse 2s ease-in-out infinite;
+      }
+
+      .animate-loading-spin {
+        animation: loading-spin 1s linear infinite;
+      }
+
+      .animate-scale-in {
+        animation: scale-in 0.8s ease-out forwards;
       }
 
       .hover\\:shadow-3xl:hover {
@@ -586,89 +873,190 @@ export default function App() {
     }
   }, []);
 
-  return (
-    <div
-      className={`relative w-full min-h-screen overflow-hidden bg-black transform transition-all duration-1000 ease-out ${
-        isPageLoaded ? "opacity-100" : "opacity-0"
-      }`}
-      style={{ backgroundColor: '#000000' }}
-    >
-      {/* The Header and Hero components have their own z-index which places them above the gradients. */}
-      <HeaderSection />
-      <main className="w-full">
-        <Portfolio />
+  // Loading Screen Component
+  const LoadingScreen = () => (
+    <div className={`fixed inset-0 z-[100] bg-black flex items-center justify-center transition-all duration-1000 ${
+      showLoadingScreen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+    }`}>
+      <div className="flex flex-col items-center space-y-6">
+        {/* Animated Logo */}
+        <div className="animate-scale-in">
+          <LogoIcon />
+        </div>
         
-        {/* Full-width Skills Marquee Section */}
-        <section className="w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-12 sm:py-16 md:py-20 border-t border-gray-700/50">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                Technical Expertise
-              </h2>
-              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Technologies and frameworks I work with to build amazing digital experiences
-              </p>
-            </div>
-            
-            {/* Main Marquee */}
-            <Marquee 
-              className="py-4 sm:py-6 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-400/20 rounded-xl backdrop-blur-sm overflow-hidden mb-6" 
-              reverse={false} 
-              pauseOnHover={true} 
-              speed={40}
-            >
-              {coderData.skills.map((skill, index) => {
-                // Image URL mapping for each skill
-                const getSkillImage = (skillName) => {
-                  const images = {
-                    "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-                    "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-                    "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-                    "Laravel": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
-                    "TailwindCSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
-                    "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-                    "Figma": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-                    "GitHub": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-                    "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-                    "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-                    "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-                    "Oracle": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
-                    "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-                    "SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-                    "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                  };
-                  
-                  return images[skillName] || "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg";
-                };
-                
-                return (
-                  <span 
-                    key={index} 
-                    className="px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-full text-blue-300 text-base font-medium whitespace-nowrap mx-4 hover:scale-105 transition-transform duration-300 shadow-lg flex items-center gap-3"
-                  >
-                    <img 
-                      src={getSkillImage(skill)} 
-                      alt={`${skill} icon`}
-                      className="w-5 h-5 object-contain"
-                      onError={(e) => {
-                        // Fallback to a default icon if image fails to load
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'inline-block';
-                      }}
-                    />
-                    <span className="w-5 h-5 text-blue-300 hidden">⚡</span>
-                    <span>{skill}</span>
-                  </span>
-                );
-              })}
-            </Marquee>
-            
+        {/* Loading Text */}
+        <div className="flex flex-col items-center space-y-4">
+          <h2 className="text-2xl font-bold text-white animate-loading-pulse">
+            Loading Portfolio
+          </h2>
+          
+          {/* Loading Dots */}
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full animate-loading-pulse" style={{animationDelay: '0s'}}></div>
+            <div className="w-3 h-3 bg-purple-500 rounded-full animate-loading-pulse" style={{animationDelay: '0.2s'}}></div>
+            <div className="w-3 h-3 bg-pink-500 rounded-full animate-loading-pulse" style={{animationDelay: '0.4s'}}></div>
           </div>
-        </section>
-        
-        {/* Footer Section */}
-        <Footer />
-      </main>
+        </div>
+
+        {/* Loading Bar */}
+        <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+          <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-loading-pulse"></div>
+        </div>
+      </div>
     </div>
+  );
+
+  return (
+    <>
+      {/* Loading Screen */}
+      <LoadingScreen />
+      
+      {/* Main Content */}
+      <div
+        className={`relative w-full min-h-screen overflow-hidden bg-black transform transition-all duration-1000 ease-out ${
+          isPageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+        style={{ backgroundColor: '#000000' }}
+      >
+        {/* The Header and Hero components have their own z-index which places them above the gradients. */}
+        <HeaderSection />
+        <main className="w-full">
+          <section id="home" className={`transform transition-all duration-1000 ease-out ${
+            scrollTriggeredSections.has('home') ? 'animate-slide-in-up opacity-100' : 'opacity-0 translate-y-20'
+          }`}>
+            <Portfolio />
+          </section>
+          
+          {/* Full-width Skills Marquee Section */}
+          <section id="features" className={`w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-12 sm:py-16 md:py-20 border-t border-gray-700/50 transform transition-all duration-1000 ease-out ${
+            scrollTriggeredSections.has('features') ? 'animate-slide-in-left opacity-100' : 'opacity-0 -translate-x-20'
+          }`}>
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className={`text-center mb-8 sm:mb-12 transform transition-all duration-800 delay-200 ease-out ${
+                scrollTriggeredSections.has('features') ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'
+              }`}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                  Technical Expertise
+                </h2>
+                <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  Technologies and frameworks I work with to build amazing digital experiences
+                </p>
+              </div>
+              
+              {/* Main Marquee */}
+              <div className={`transform transition-all duration-1000 delay-400 ease-out ${
+                scrollTriggeredSections.has('features') ? 'animate-zoom-in opacity-100' : 'opacity-0 scale-75'
+              }`}>
+                <Marquee 
+                  className="py-4 sm:py-6 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-400/20 rounded-xl backdrop-blur-sm overflow-hidden mb-6" 
+                  reverse={false} 
+                  pauseOnHover={true} 
+                  speed={40}
+                >
+                  {coderData.skills.map((skill, index) => {
+                    // Image URL mapping for each skill
+                    const getSkillImage = (skillName) => {
+                      const images = {
+                        "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                        "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+                        "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+                        "Laravel": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
+                        "TailwindCSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+                        "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+                        "Figma": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+                        "GitHub": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                        "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+                        "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+                        "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+                        "Oracle": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
+                        "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+                        "SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+                        "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                      };
+                      
+                      return images[skillName] || "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg";
+                    };
+                    
+                    return (
+                      <span 
+                        key={index} 
+                        className="px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-full text-blue-300 text-base font-medium whitespace-nowrap mx-4 hover:scale-105 transition-transform duration-300 shadow-lg flex items-center gap-3"
+                        style={{
+                          animationDelay: scrollTriggeredSections.has('features') ? `${index * 100}ms` : '0ms'
+                        }}
+                      >
+                        <img 
+                          src={getSkillImage(skill)} 
+                          alt={`${skill} icon`}
+                          className="w-5 h-5 object-contain"
+                          onError={(e) => {
+                            // Fallback to a default icon if image fails to load
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'inline-block';
+                          }}
+                        />
+                        <span className="w-5 h-5 text-blue-300 hidden">⚡</span>
+                        <span>{skill}</span>
+                      </span>
+                    );
+                  })}
+                </Marquee>
+              </div>
+              
+            </div>
+          </section>
+          
+          {/* About Section */}
+          <section id="aboutme" className={`transform transition-all duration-1000 ease-out ${
+            scrollTriggeredSections.has('aboutme') || isPageLoaded ? 'animate-slide-in-right opacity-100' : 'opacity-0 translate-x-20'
+          }`}>
+            <About />
+          </section>
+          
+          {/* Contact Section */}
+          <section id="contact" className={`w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-16 sm:py-20 md:py-24 border-t border-gray-700/50 transform transition-all duration-1000 ease-out ${
+            scrollTriggeredSections.has('contact') ? 'animate-slide-in-up opacity-100' : 'opacity-0 translate-y-20'
+          }`}>
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className={`text-center transform transition-all duration-800 delay-200 ease-out ${
+                scrollTriggeredSections.has('contact') ? 'animate-bounce-in opacity-100' : 'opacity-0 scale-50'
+              }`}>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+                  Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
+                </h2>
+                <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+                  Ready to start your next project? Let's discuss how we can work together to bring your ideas to life.
+                </p>
+                <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 delay-500 ease-out ${
+                  scrollTriggeredSections.has('contact') ? 'animate-zoom-in opacity-100' : 'opacity-0 scale-75'
+                }`}>
+                  <a 
+                    href="https://t.me/nan_fullstack" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
+                  >
+                    Contact on Telegram
+                  </a>
+                  <a 
+                    href="mailto:your.email@example.com" 
+                    className="px-6 py-3 bg-transparent hover:bg-gray-800 border border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
+                  >
+                    Send Email
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Footer Section */}
+          <div className={`transform transition-all duration-1000 ease-out ${
+            scrollTriggeredSections.has('contact') ? 'animate-slide-in-down opacity-100' : 'opacity-0 -translate-y-20'
+          }`}>
+            <Footer />
+          </div>
+        </main>
+      </div>
+    </>
   );
 }
