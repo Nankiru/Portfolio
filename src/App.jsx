@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Marquee from "./pages/Skill.jsx";
+import Footer from "./pages/Footer.jsx";
 
 // Self-contained SVG icon for the "Welcome" badge
 const DotIcon = () => (
@@ -444,6 +446,7 @@ const Portfolio = () => {
               </span>
             </div>
 
+
             <p
               className={`text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-lg leading-relaxed transform transition-all duration-800 delay-1400 ease-out ${
                 isLoaded
@@ -471,6 +474,7 @@ const Portfolio = () => {
                 </a>
               </button>
             </div>
+
           </div>
 
           {/* Right Column: Code Editor */}
@@ -593,6 +597,77 @@ export default function App() {
       <HeaderSection />
       <main className="w-full">
         <Portfolio />
+        
+        {/* Full-width Skills Marquee Section */}
+        <section className="w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-12 sm:py-16 md:py-20 border-t border-gray-700/50">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                Technical Expertise
+              </h2>
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                Technologies and frameworks I work with to build amazing digital experiences
+              </p>
+            </div>
+            
+            {/* Main Marquee */}
+            <Marquee 
+              className="py-4 sm:py-6 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-400/20 rounded-xl backdrop-blur-sm overflow-hidden mb-6" 
+              reverse={false} 
+              pauseOnHover={true} 
+              speed={40}
+            >
+              {coderData.skills.map((skill, index) => {
+                // Image URL mapping for each skill
+                const getSkillImage = (skillName) => {
+                  const images = {
+                    "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                    "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+                    "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+                    "Laravel": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
+                    "TailwindCSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+                    "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+                    "Figma": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+                    "GitHub": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                    "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+                    "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+                    "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+                    "Oracle": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
+                    "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+                    "SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+                    "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                  };
+                  
+                  return images[skillName] || "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg";
+                };
+                
+                return (
+                  <span 
+                    key={index} 
+                    className="px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-full text-blue-300 text-base font-medium whitespace-nowrap mx-4 hover:scale-105 transition-transform duration-300 shadow-lg flex items-center gap-3"
+                  >
+                    <img 
+                      src={getSkillImage(skill)} 
+                      alt={`${skill} icon`}
+                      className="w-5 h-5 object-contain"
+                      onError={(e) => {
+                        // Fallback to a default icon if image fails to load
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'inline-block';
+                      }}
+                    />
+                    <span className="w-5 h-5 text-blue-300 hidden">⚡</span>
+                    <span>{skill}</span>
+                  </span>
+                );
+              })}
+            </Marquee>
+            
+          </div>
+        </section>
+        
+        {/* Footer Section */}
+        <Footer />
       </main>
     </div>
   );
