@@ -68,15 +68,16 @@ const CloseIcon = () => (
 );
 const coderData = {
   name: "Khem Sopheanan",
-  role: "Frontend Developer",
+  role: "Full Stack Developer",
   seniority: "3+ Years",
   location: "Phnom Penh, Cambodia ",
   skills: [
     "React",
     "JavaScript",
     "PHP",
-    "Laravel",
+    "Laravel Rest API",
     "TailwindCSS",
+    "Bootstrap",
     "CSS",
     "Figma",
     "GitHub",
@@ -105,12 +106,16 @@ const CoderProfileCard = () => {
       <div className="px-2 sm:px-4 lg:px-8 py-3 sm:py-5 flex justify-between items-center bg-gray-900">
         <div className="flex flex-row space-x-1 sm:space-x-2">
           <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-red-500 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-red-400 animate-pulse"></div>
-          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-orange-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-orange-300 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-          <div className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-green-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-green-300 animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div
+            className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-orange-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-orange-300 animate-pulse"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+          <div
+            className="h-2 w-2 sm:h-3 sm:w-3 rounded-full bg-green-400 cursor-pointer transition-all duration-300 hover:scale-125 hover:shadow-lg hover:bg-green-300 animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
         </div>
-        <div className="text-xs text-gray-400 font-mono">
-          Portfolio.js
-        </div>
+        <div className="text-xs text-gray-400 font-mono">Portfolio.js</div>
       </div>
 
       {/* Code Content Area */}
@@ -132,45 +137,33 @@ const CoderProfileCard = () => {
           {/* Code Snippet with dark theme colors */}
           <code className="font-mono text-xs sm:text-sm lg:text-base w-full overflow-x-auto">
             <div>
-              <span className="mr-1 sm:mr-2 text-pink-400">
-                const
-              </span>
-              <span className="mr-1 sm:mr-2 text-violet-400">
-                coder
-              </span>
+              <span className="mr-1 sm:mr-2 text-pink-400">const</span>
+              <span className="mr-1 sm:mr-2 text-violet-400">coder</span>
               <span className="mr-1 sm:mr-2 text-pink-400">=</span>
               <span className="text-gray-400">{"{"}</span>
             </div>
             <div className="pl-3 sm:pl-6">
               <span className="text-white">name:</span>
               <span className="text-gray-400">&#39;</span>
-              <span className="text-green-400">
-                {coderData.name}
-              </span>
+              <span className="text-green-400">{coderData.name}</span>
               <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-3 sm:pl-6">
               <span className="text-white">role:</span>
               <span className="text-gray-400">&#39;</span>
-              <span className="text-green-400">
-                {coderData.role}
-              </span>
+              <span className="text-green-400">{coderData.role}</span>
               <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-3 sm:pl-6">
               <span className="text-white">year:</span>
               <span className="text-gray-400">&#39;</span>
-              <span className="text-green-400">
-                {coderData.seniority}
-              </span>
+              <span className="text-green-400">{coderData.seniority}</span>
               <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-3 sm:pl-6">
               <span className="text-white">location:</span>
               <span className="text-gray-400">&#39;</span>
-              <span className="text-green-400">
-                {coderData.location}
-              </span>
+              <span className="text-green-400">{coderData.location}</span>
               <span className="text-gray-400">&#39;,</span>
             </div>
             <div className="pl-3 sm:pl-6">
@@ -179,19 +172,11 @@ const CoderProfileCard = () => {
               <div className="pl-3 sm:pl-6 flex flex-wrap">
                 {coderData.skills.map((skill, index) => (
                   <span key={skill} className="mr-1">
-                    <span className="text-gray-400">
-                      &#39;
-                    </span>
-                    <span className="text-cyan-400">
-                      {skill}
-                    </span>
-                    <span className="text-gray-400">
-                      &#39;
-                    </span>
+                    <span className="text-gray-400">&#39;</span>
+                    <span className="text-cyan-400">{skill}</span>
+                    <span className="text-gray-400">&#39;</span>
                     {index < coderData.skills.length - 1 && (
-                      <span className="text-gray-400">
-                        ,{" "}
-                      </span>
+                      <span className="text-gray-400">, </span>
                     )}
                   </span>
                 ))}
@@ -220,9 +205,7 @@ const NavLink = ({ href, children, isActive = false }) => (
   <a
     href={href}
     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
-      isActive
-        ? "text-orange-400"
-        : "text-gray-300 hover:text-orange-400"
+      isActive ? "text-orange-400" : "text-gray-300 hover:text-orange-400"
     }`}
   >
     {children}
@@ -234,8 +217,7 @@ const Button = ({ children, variant = "primary", className = "" }) => {
     "px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 transform hover:scale-105";
 
   const variants = {
-    primary:
-      "bg-white text-black hover:bg-gray-200 focus:ring-gray-300",
+    primary: "bg-white text-black hover:bg-gray-200 focus:ring-gray-300",
     secondary:
       "bg-gray-800 text-white hover:bg-gray-700 focus:ring-gray-600 shadow-sm border border-gray-600",
     outline:
@@ -250,39 +232,85 @@ const Button = ({ children, variant = "primary", className = "" }) => {
 };
 
 // --- MOBILE NAVIGATION --- //
-const MobileMenu = ({ isOpen, navItems, handleNavClick, activeLink }) => (
+const MobileMenu = ({
+  isOpen,
+  navItems,
+  handleNavClick,
+  activeLink,
+  isScrolled,
+}) => (
   <div
     className={`
-        md:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-gray-700 shadow-lg
-        transition-all duration-300 ease-in-out
+        md:hidden absolute top-full left-0 w-full backdrop-blur-sm border-t shadow-lg
+        transition-all duration-300 ease-in-out z-50
         ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-4 pointer-events-none"
         }
+        ${
+          isScrolled
+            ? "bg-gray-900/98 border-blue-400/30 shadow-blue-900/20"
+            : "bg-gray-900/95 border-gray-700 shadow-black/20"
+        }
     `}
   >
-    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      {navItems.map((item) => (
+    <div className="px-3 pt-3 pb-3 space-y-2">
+      {navItems.map((item, index) => (
         <button
           key={item}
-          onClick={() => handleNavClick(item)}
-          className={`w-full text-left block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("🎯 Mobile button clicked:", item);
+            handleNavClick(item);
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+            console.log("👆 Touch started on:", item);
+          }}
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            console.log("👆 Touch ended on:", item);
+            handleNavClick(item);
+          }}
+          className={`mobile-nav-item w-full text-left block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 transform active:scale-95 ${
             activeLink === item
-              ? "text-orange-400 bg-gray-800"
-              : "text-gray-300 hover:text-orange-400 hover:bg-gray-800"
+              ? isScrolled
+                ? "text-blue-400 bg-blue-500/20 shadow-md border border-blue-400/30"
+                : "text-orange-400 bg-gray-800 shadow-md"
+              : isScrolled
+              ? "text-gray-200 hover:text-blue-400 hover:bg-blue-500/10 border border-transparent hover:border-blue-400/20 active:bg-blue-500/20"
+              : "text-gray-300 hover:text-orange-400 hover:bg-gray-800 border border-transparent active:bg-gray-700"
           }`}
+          style={{
+            animationDelay: `${index * 50}ms`,
+            minHeight: "48px", // Ensure touch-friendly size
+            touchAction: "manipulation", // Prevent zoom on double-tap
+            WebkitTapHighlightColor: "transparent", // Remove default tap highlight
+            cursor: "pointer",
+          }}
+          aria-label={`Navigate to ${item} section`}
+          type="button"
         >
-          {item}
+          <div className="flex items-center justify-between pointer-events-none">
+            <span>{item}</span>
+            {activeLink === item && (
+              <div className="w-2 h-2 rounded-full bg-current opacity-60 animate-pulse"></div>
+            )}
+          </div>
         </button>
       ))}
     </div>
-    <div className="pt-4 pb-4 border-t border-gray-700">
-      <div className="px-5">
-        <Button variant="outline" className="w-full">
-          <a href="https://t.me/nan_fullstack">Contact Me</a>
-        </Button>
-      </div>
+    <div className="pt-3 pb-4 border-t border-gray-700/50 mx-3">
+      <Button variant="outline" className="w-full h-12 text-base font-medium">
+        <a
+          href="https://t.me/nan_fullstack"
+          className="w-full h-full flex items-center justify-center"
+        >
+          Contact Me
+        </a>
+      </Button>
     </div>
   </div>
 );
@@ -297,14 +325,14 @@ const HeaderSection = () => {
 
   useEffect(() => {
     setIsLoaded(true);
-    
+
     // Add smooth scrolling CSS
     const styles = `
       html {
         scroll-behavior: smooth;
       }
     `;
-    
+
     if (typeof document !== "undefined") {
       const styleSheet = document.createElement("style");
       styleSheet.textContent = styles;
@@ -314,13 +342,13 @@ const HeaderSection = () => {
     // Handle scroll to update active navigation and scroll state
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      
+
       // Update scroll state for enhanced navbar visibility
       setIsScrolled(scrollY > 50);
-      
+
       // Active navigation tracking
-      const sections = navItems.map(item => {
-        const sectionId = item.toLowerCase().replace(/\s+/g, '');
+      const sections = navItems.map((item) => {
+        const sectionId = item.toLowerCase().replace(/\s+/g, "");
         return document.getElementById(sectionId);
       });
       const scrollPosition = window.scrollY + 100; // Offset for sticky header
@@ -334,45 +362,83 @@ const HeaderSection = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = (item) => {
     // Convert navigation item to section ID format
-    const sectionId = item.toLowerCase().replace(/\s+/g, '');
+    const sectionId = item.toLowerCase().replace(/\s+/g, "");
     const section = document.getElementById(sectionId);
-    
+
+    console.log("🔍 Navigation Debug:", {
+      clicked: item,
+      sectionId: sectionId,
+      elementFound: !!section,
+      isMobile: window.innerWidth < 768,
+    });
+
     if (section) {
-      section.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      // Calculate offset for sticky header (mobile-responsive)
+      const isMobile = window.innerWidth < 768;
+      const headerHeight = isMobile ? 60 : 80; // Smaller offset for mobile
+      const elementPosition = section.offsetTop;
+      const offsetPosition = elementPosition - headerHeight;
+
+      console.log("📍 Scrolling to:", {
+        sectionName: item,
+        elementPosition,
+        headerHeight,
+        finalPosition: Math.max(0, offsetPosition),
       });
+
+      // Smooth scroll to section with offset
+      window.scrollTo({
+        top: Math.max(0, offsetPosition), // Ensure we don't scroll above the page
+        behavior: "smooth",
+      });
+
       setActiveLink(item);
       setIsMenuOpen(false); // Close mobile menu
+
+      // Add a small delay to ensure smooth menu closing on mobile
+      if (isMobile) {
+        setTimeout(() => {
+          console.log("✅ Mobile navigation completed for:", item);
+        }, 300);
+      }
+    } else {
+      console.error(
+        "❌ Section not found for:",
+        sectionId,
+        "Available sections:",
+        ["home", "features", "aboutme", "contact"].map((id) => ({
+          id,
+          exists: !!document.getElementById(id),
+        }))
+      );
     }
   };
 
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 w-full transform transition-all duration-500 ease-out ${
-        isLoaded ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
-      } ${isScrolled ? "shadow-2xl backdrop-blur-xl" : "shadow-lg backdrop-blur-lg"}`}
-      style={{ 
-        backgroundColor: isScrolled ? 'rgba(17, 24, 39, 0.98)' : 'rgba(17, 24, 39, 0.95)',
-        backdropFilter: isScrolled ? 'blur(20px)' : 'blur(12px)',
-        borderBottom: isScrolled ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(75, 85, 99, 0.5)'
+      className="sticky top-[15px] left-0 right-0 z-50 w-full shadow-2xl backdrop-blur-xl transition-all duration-500 ease-out"
+      style={{
+        backgroundColor: "rgba(17, 24, 39, 0.98)",
+        backdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(59, 130, 246, 0.3)",
+        position: "sticky",
+        top: "0",
+        zIndex: 9999,
       }}
     >
       {/* Enhanced Header Background with scroll-responsive styling */}
-      <div className={`absolute inset-0 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-gradient-to-r from-gray-900/98 via-gray-800/98 to-gray-900/98 shadow-2xl shadow-blue-900/20' 
-          : 'bg-gray-900/95 shadow-lg shadow-black/20'
-      } backdrop-blur-lg border-b border-gray-700/50`}></div>
-      
-      <div className="relative w-full px-2 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-gray-900/98 via-gray-800/98 to-gray-900/98 shadow-2xl shadow-blue-900/20 backdrop-blur-lg border-b border-gray-700/50 transition-all duration-300"
+      ></div>
+
+      <div className=" w-full px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           <div
             className={`flex-shrink-0 flex items-center gap-2 transform transition-all duration-700 delay-200 ease-out ${
               isLoaded
@@ -381,7 +447,7 @@ const HeaderSection = () => {
             }`}
           >
             <LogoIcon />
-            <span className="text-lg sm:text-xl font-bold text-white">
+            <span className="text-base sm:text-lg md:text-xl font-bold text-white">
               Portfolio
             </span>
           </div>
@@ -389,8 +455,8 @@ const HeaderSection = () => {
             className={`hidden md:flex items-center space-x-1 p-1 rounded-full backdrop-blur-sm border shadow-lg transform transition-all duration-700 delay-300 ease-out ${
               isLoaded ? "scale-100 opacity-100" : "scale-95 opacity-0"
             } ${
-              isScrolled 
-                ? "bg-gray-800/80 border-blue-400/50 shadow-blue-900/30" 
+              isScrolled
+                ? "bg-gray-800/80 border-blue-400/50 shadow-blue-900/30"
                 : "bg-gray-800/60 border-gray-600/80 shadow-gray-900/50"
             }`}
           >
@@ -408,12 +474,12 @@ const HeaderSection = () => {
                   onClick={() => handleNavClick(item)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
                     activeLink === item
-                      ? isScrolled 
-                        ? "text-blue-400 bg-blue-500/20 shadow-lg" 
+                      ? isScrolled
+                        ? "text-blue-400 bg-blue-500/20 shadow-lg"
                         : "text-orange-400"
                       : isScrolled
-                        ? "text-gray-200 hover:text-blue-400 hover:bg-blue-500/10"
-                        : "text-gray-300 hover:text-orange-400"
+                      ? "text-gray-200 hover:text-blue-400 hover:bg-blue-500/10"
+                      : "text-gray-300 hover:text-orange-400"
                   }`}
                 >
                   {item}
@@ -428,26 +494,53 @@ const HeaderSection = () => {
                 : "translate-x-10 opacity-0"
             }`}
           >
-            <Button variant="outline"><a href="https://t.me/nan_fullstack">Contact Me</a></Button>
+            <Button variant="outline">
+              <a href="https://t.me/nan_fullstack">Contact Me</a>
+            </Button>
           </div>
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
+              className={`inline-flex items-center justify-center p-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-inset transform hover:scale-105 active:scale-95 ${
+                isScrolled
+                  ? "text-gray-200 hover:text-blue-400 hover:bg-blue-500/10 focus:ring-blue-500 border border-blue-400/30"
+                  : "text-gray-300 hover:text-white hover:bg-gray-800 focus:ring-orange-500 border border-gray-600/50"
+              }`}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
+              style={{ minWidth: "44px", minHeight: "44px" }} // Touch-friendly size
             >
-              <span className="sr-only">Open main menu</span>
-              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+              <span className="sr-only">
+                {isMenuOpen ? "Close main menu" : "Open main menu"}
+              </span>
+              <div className="relative w-6 h-6">
+                <div
+                  className={`absolute inset-0 transition-all duration-300 ${
+                    isMenuOpen ? "opacity-0 rotate-180" : "opacity-100 rotate-0"
+                  }`}
+                >
+                  <MenuIcon />
+                </div>
+                <div
+                  className={`absolute inset-0 transition-all duration-300 ${
+                    isMenuOpen
+                      ? "opacity-100 rotate-0"
+                      : "opacity-0 -rotate-180"
+                  }`}
+                >
+                  <CloseIcon />
+                </div>
+              </div>
             </button>
           </div>
         </div>
       </div>
-      <MobileMenu 
-        isOpen={isMenuOpen} 
-        navItems={navItems} 
+      <MobileMenu
+        isOpen={isMenuOpen}
+        navItems={navItems}
         handleNavClick={handleNavClick}
         activeLink={activeLink}
+        isScrolled={isScrolled}
       />
     </header>
   );
@@ -494,7 +587,7 @@ const Portfolio = () => {
               }`}
             >
               <DotIcon />
-              Welcome to my universe
+              Welcome to my portfolio
             </div>
 
             <div className="relative w-full">
@@ -531,7 +624,6 @@ const Portfolio = () => {
               </span>
             </div>
 
-
             <p
               className={`text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-lg leading-relaxed transform transition-all duration-800 delay-1400 ease-out ${
                 isLoaded
@@ -559,7 +651,6 @@ const Portfolio = () => {
                 </a>
               </button>
             </div>
-
           </div>
 
           {/* Right Column: Code Editor */}
@@ -582,7 +673,9 @@ const Portfolio = () => {
 export default function App() {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
-  const [scrollTriggeredSections, setScrollTriggeredSections] = useState(new Set());
+  const [scrollTriggeredSections, setScrollTriggeredSections] = useState(
+    new Set()
+  );
 
   useEffect(() => {
     // Show loading screen for a bit longer to see animations
@@ -603,22 +696,24 @@ export default function App() {
 
     const observerOptions = {
       threshold: 0.1, // Trigger when 10% of element is visible
-      rootMargin: '-50px 0px -50px 0px' // Trigger slightly before element comes into view
+      rootMargin: "-50px 0px -50px 0px", // Trigger slightly before element comes into view
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('Section visible:', entry.target.id); // Debug log
-          setScrollTriggeredSections(prev => new Set([...prev, entry.target.id]));
+          console.log("Section visible:", entry.target.id); // Debug log
+          setScrollTriggeredSections(
+            (prev) => new Set([...prev, entry.target.id])
+          );
         }
       });
     }, observerOptions);
 
     // Observe all sections after a delay to ensure DOM is ready
     const observeTimer = setTimeout(() => {
-      const sectionsToObserve = ['home', 'features', 'aboutme', 'contact'];
-      sectionsToObserve.forEach(sectionId => {
+      const sectionsToObserve = ["home", "features", "aboutme", "contact"];
+      sectionsToObserve.forEach((sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
           observer.observe(element);
@@ -633,20 +728,20 @@ export default function App() {
   }, [isPageLoaded]);
 
   useEffect(() => {
-
     // Add viewport meta tag for proper mobile rendering
     if (typeof document !== "undefined") {
       let viewportMeta = document.querySelector('meta[name="viewport"]');
       if (!viewportMeta) {
-        viewportMeta = document.createElement('meta');
-        viewportMeta.name = 'viewport';
+        viewportMeta = document.createElement("meta");
+        viewportMeta.name = "viewport";
         document.head.appendChild(viewportMeta);
       }
-      viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
-      
+      viewportMeta.content =
+        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover";
+
       // Force dark background on body
-      document.body.style.backgroundColor = '#000000';
-      document.documentElement.style.backgroundColor = '#000000';
+      document.body.style.backgroundColor = "#000000";
+      document.documentElement.style.backgroundColor = "#000000";
     }
 
     // Add custom CSS for animations and mobile fixes
@@ -654,6 +749,21 @@ export default function App() {
       html, body {
         background-color: #000000 !important;
         color: white;
+      }
+      
+      /* Ensure sticky header works properly */
+      body {
+        padding-top: 0;
+      }
+      
+      /* Enhanced sticky header styles */
+      header[class*="sticky"] {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+        will-change: transform;
+        transform: translateZ(0);
       }
       
       @keyframes fade-in-up {
@@ -828,7 +938,7 @@ export default function App() {
         box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
       }
 
-      /* Mobile specific fixes */
+      /* Mobile specific fixes and enhancements */
       @media (max-width: 640px) {
         html, body {
           overflow-x: hidden;
@@ -840,13 +950,51 @@ export default function App() {
           -webkit-tap-highlight-color: transparent;
         }
         
-        /* Force header to be dark on mobile */
+        /* Enhanced mobile header */
         header {
           background-color: rgba(17, 24, 39, 0.95) !important;
+          position: -webkit-sticky !important;
+          position: sticky !important;
+          top: 0 !important;
+          z-index: 9999 !important;
+          backdrop-filter: blur(20px);
+        }
+        
+        /* Mobile menu improvements */
+        button[aria-controls="mobile-menu"] {
+          min-width: 44px !important;
+          min-height: 44px !important;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Mobile navigation items - Enhanced for better touch interaction */
+        .mobile-nav-item {
+          min-height: 48px !important;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent !important;
+          cursor: pointer;
+          user-select: none;
+          -webkit-user-select: none;
+        }
+        
+        .mobile-nav-item:active {
+          transform: scale(0.95) !important;
+          transition: transform 0.1s ease !important;
+        }
+        
+        /* Prevent zoom on input focus */
+        input, select, textarea {
+          font-size: 16px !important;
+        }
+        
+        /* Ensure mobile menu is always clickable */
+        .mobile-nav-item span {
+          pointer-events: none; /* Ensure clicks go to the button */
         }
       }
 
-      /* Fix for iOS Safari */
+      /* Fix for iOS Safari and sticky positioning */
       @supports (-webkit-touch-callout: none) {
         .min-h-screen {
           min-height: -webkit-fill-available;
@@ -854,6 +1002,14 @@ export default function App() {
         
         html, body {
           background-color: #000000 !important;
+        }
+        
+        /* Enhanced sticky support for iOS */
+        header[class*="sticky"] {
+          position: -webkit-sticky !important;
+          position: sticky !important;
+          top: 0 !important;
+          z-index: 9999 !important;
         }
       }
       
@@ -875,26 +1031,37 @@ export default function App() {
 
   // Loading Screen Component
   const LoadingScreen = () => (
-    <div className={`fixed inset-0 z-[100] bg-black flex items-center justify-center transition-all duration-1000 ${
-      showLoadingScreen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-    }`}>
+    <div
+      className={`fixed inset-0 z-[100] bg-black flex items-center justify-center transition-all duration-1000 ${
+        showLoadingScreen ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+    >
       <div className="flex flex-col items-center space-y-6">
         {/* Animated Logo */}
         <div className="animate-scale-in">
           <LogoIcon />
         </div>
-        
+
         {/* Loading Text */}
         <div className="flex flex-col items-center space-y-4">
           <h2 className="text-2xl font-bold text-white animate-loading-pulse">
             Loading Portfolio
           </h2>
-          
+
           {/* Loading Dots */}
           <div className="flex space-x-2">
-            <div className="w-3 h-3 bg-blue-500 rounded-full animate-loading-pulse" style={{animationDelay: '0s'}}></div>
-            <div className="w-3 h-3 bg-purple-500 rounded-full animate-loading-pulse" style={{animationDelay: '0.2s'}}></div>
-            <div className="w-3 h-3 bg-pink-500 rounded-full animate-loading-pulse" style={{animationDelay: '0.4s'}}></div>
+            <div
+              className="w-3 h-3 bg-blue-500 rounded-full animate-loading-pulse"
+              style={{ animationDelay: "0s" }}
+            ></div>
+            <div
+              className="w-3 h-3 bg-purple-500 rounded-full animate-loading-pulse"
+              style={{ animationDelay: "0.2s" }}
+            ></div>
+            <div
+              className="w-3 h-3 bg-pink-500 rounded-full animate-loading-pulse"
+              style={{ animationDelay: "0.4s" }}
+            ></div>
           </div>
         </div>
 
@@ -910,89 +1077,125 @@ export default function App() {
     <>
       {/* Loading Screen */}
       <LoadingScreen />
-      
+
       {/* Main Content */}
       <div
         className={`relative w-full min-h-screen overflow-hidden bg-black transform transition-all duration-1000 ease-out ${
           isPageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
-        style={{ backgroundColor: '#000000' }}
+        style={{ backgroundColor: "#000000" }}
       >
         {/* The Header and Hero components have their own z-index which places them above the gradients. */}
         <HeaderSection />
         <main className="w-full">
-          <section id="home" className={`transform transition-all duration-1000 ease-out ${
-            scrollTriggeredSections.has('home') ? 'animate-slide-in-up opacity-100' : 'opacity-0 translate-y-20'
-          }`}>
+          <section
+            id="home"
+            className={`transform transition-all duration-1000 ease-out ${
+              scrollTriggeredSections.has("home")
+                ? "animate-slide-in-up opacity-100"
+                : "opacity-0 translate-y-20"
+            }`}
+          >
             <Portfolio />
           </section>
-          
+
           {/* Full-width Skills Marquee Section */}
-          <section id="features" className={`w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-12 sm:py-16 md:py-20 border-t border-gray-700/50 transform transition-all duration-1000 ease-out ${
-            scrollTriggeredSections.has('features') ? 'animate-slide-in-left opacity-100' : 'opacity-0 -translate-x-20'
-          }`}>
+          <section
+            id="features"
+            className={`w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-12 sm:py-16 md:py-20 border-t border-gray-700/50 transform transition-all duration-1000 ease-out ${
+              scrollTriggeredSections.has("features")
+                ? "animate-slide-in-left opacity-100"
+                : "opacity-0 -translate-x-20"
+            }`}
+          >
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className={`text-center mb-8 sm:mb-12 transform transition-all duration-800 delay-200 ease-out ${
-                scrollTriggeredSections.has('features') ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'
-              }`}>
+              <div
+                className={`text-center mb-8 sm:mb-12 transform transition-all duration-800 delay-200 ease-out ${
+                  scrollTriggeredSections.has("features")
+                    ? "animate-fade-in-up opacity-100"
+                    : "opacity-0 translate-y-10"
+                }`}
+              >
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                   Technical Expertise
                 </h2>
                 <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                  Technologies and frameworks I work with to build amazing digital experiences
+                  Technologies and frameworks I work with to build amazing
+                  digital interfact with frameworks
                 </p>
               </div>
-              
+
               {/* Main Marquee */}
-              <div className={`transform transition-all duration-1000 delay-400 ease-out ${
-                scrollTriggeredSections.has('features') ? 'animate-zoom-in opacity-100' : 'opacity-0 scale-75'
-              }`}>
-                <Marquee 
-                  className="py-4 sm:py-6 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-400/20 rounded-xl backdrop-blur-sm overflow-hidden mb-6" 
-                  reverse={false} 
-                  pauseOnHover={true} 
+              <div
+                className={`transform transition-all duration-1000 delay-400 ease-out ${
+                  scrollTriggeredSections.has("features")
+                    ? "animate-zoom-in opacity-100"
+                    : "opacity-0 scale-75"
+                }`}
+              >
+                <Marquee
+                  className="py-4 sm:py-6 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-400/20 rounded-xl backdrop-blur-sm overflow-hidden mb-6"
+                  reverse={false}
+                  pauseOnHover={true}
                   speed={40}
                 >
                   {coderData.skills.map((skill, index) => {
                     // Image URL mapping for each skill
                     const getSkillImage = (skillName) => {
                       const images = {
-                        "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-                        "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-                        "PHP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-                        "Laravel": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
-                        "TailwindCSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
-                        "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-                        "Figma": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-                        "GitHub": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-                        "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+                        React:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+                        JavaScript:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+                        PHP: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+                        Laravel:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
+                        TailwindCSS:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+                        CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+                        Figma:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+                        GitHub:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+                        "C++":
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
                         "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-                        "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-                        "Oracle": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
-                        "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-                        "SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-                        "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                        Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+                        Oracle:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg",
+                        MySQL:
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+                        "SQL Server":
+                          "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+                        Git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
                       };
-                      
-                      return images[skillName] || "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg";
+
+                      return (
+                        images[skillName] ||
+                        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                      );
                     };
-                    
+
                     return (
-                      <span 
-                        key={index} 
+                      <span
+                        key={index}
                         className="px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 rounded-full text-blue-300 text-base font-medium whitespace-nowrap mx-4 hover:scale-105 transition-transform duration-300 shadow-lg flex items-center gap-3"
                         style={{
-                          animationDelay: scrollTriggeredSections.has('features') ? `${index * 100}ms` : '0ms'
+                          animationDelay: scrollTriggeredSections.has(
+                            "features"
+                          )
+                            ? `${index * 100}ms`
+                            : "0ms",
                         }}
                       >
-                        <img 
-                          src={getSkillImage(skill)} 
+                        <img
+                          src={getSkillImage(skill)}
                           alt={`${skill} icon`}
                           className="w-5 h-5 object-contain"
                           onError={(e) => {
                             // Fallback to a default icon if image fails to load
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'inline-block';
+                            e.target.style.display = "none";
+                            e.target.nextSibling.style.display = "inline-block";
                           }}
                         />
                         <span className="w-5 h-5 text-blue-300 hidden">⚡</span>
@@ -1002,44 +1205,65 @@ export default function App() {
                   })}
                 </Marquee>
               </div>
-              
             </div>
           </section>
-          
+
           {/* About Section */}
-          <section id="aboutme" className={`transform transition-all duration-1000 ease-out ${
-            scrollTriggeredSections.has('aboutme') || isPageLoaded ? 'animate-slide-in-right opacity-100' : 'opacity-0 translate-x-20'
-          }`}>
+          <section
+            id="aboutme"
+            className={`transform transition-all duration-1000 ease-out ${
+              scrollTriggeredSections.has("aboutme") || isPageLoaded
+                ? "animate-slide-in-right opacity-100"
+                : "opacity-0 translate-x-20"
+            }`}
+          >
             <About />
           </section>
-          
+
           {/* Contact Section */}
-          <section id="contact" className={`w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-16 sm:py-20 md:py-24 border-t border-gray-700/50 transform transition-all duration-1000 ease-out ${
-            scrollTriggeredSections.has('contact') ? 'animate-slide-in-up opacity-100' : 'opacity-0 translate-y-20'
-          }`}>
+          <section
+            id="contact"
+            className={`w-full bg-gradient-to-r from-gray-900 via-black to-gray-900 py-16 sm:py-20 md:py-24 border-t border-gray-700/50 transform transition-all duration-1000 ease-out ${
+              scrollTriggeredSections.has("contact")
+                ? "animate-slide-in-up opacity-100"
+                : "opacity-0 translate-y-20"
+            }`}
+          >
             <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className={`text-center transform transition-all duration-800 delay-200 ease-out ${
-                scrollTriggeredSections.has('contact') ? 'animate-bounce-in opacity-100' : 'opacity-0 scale-50'
-              }`}>
+              <div
+                className={`text-center transform transition-all duration-800 delay-200 ease-out ${
+                  scrollTriggeredSections.has("contact")
+                    ? "animate-bounce-in opacity-100"
+                    : "opacity-0 scale-50"
+                }`}
+              >
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-                  Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
+                  Get In{" "}
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Touch
+                  </span>
                 </h2>
                 <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-                  Ready to start your next project? Let's discuss how we can work together to bring your ideas to life.
+                  Ready to start your next project? Let's discuss how we can
+                  work together to bring your ideas to life.
                 </p>
-                <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 delay-500 ease-out ${
-                  scrollTriggeredSections.has('contact') ? 'animate-zoom-in opacity-100' : 'opacity-0 scale-75'
-                }`}>
-                  <a 
-                    href="https://t.me/nan_fullstack" 
-                    target="_blank" 
+                <div
+                  className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 delay-500 ease-out ${
+                    scrollTriggeredSections.has("contact")
+                      ? "animate-zoom-in opacity-100"
+                      : "opacity-0 scale-75"
+                  }`}
+                >
+                  <a
+                    href="https://t.me/nan_fullstack"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
                   >
                     Contact on Telegram
                   </a>
-                  <a 
-                    href="mailto:your.email@example.com" 
+                  <a
+                    href="mailto:khemsopheanandev@gmail.com"
                     className="px-6 py-3 bg-transparent hover:bg-gray-800 border border-gray-600 text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
                   >
                     Send Email
@@ -1048,11 +1272,15 @@ export default function App() {
               </div>
             </div>
           </section>
-          
+
           {/* Footer Section */}
-          <div className={`transform transition-all duration-1000 ease-out ${
-            scrollTriggeredSections.has('contact') ? 'animate-slide-in-down opacity-100' : 'opacity-0 -translate-y-20'
-          }`}>
+          <div
+            className={`transform transition-all duration-1000 ease-out ${
+              scrollTriggeredSections.has("contact")
+                ? "animate-slide-in-down opacity-100"
+                : "opacity-0 -translate-y-20"
+            }`}
+          >
             <Footer />
           </div>
         </main>
